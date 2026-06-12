@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>営業マン手順書 — 面談からお渡しまで — Slide Viewer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #0D1117; color: #C9D1D9; font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  .stage { position: absolute; inset: 0; overflow: hidden; }
+  .track { display: flex; height: 100%; transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
+  .frame { flex: 0 0 100vw; height: 100vh; border: none; background: #FFFFFF; }
+  .nav { position: fixed; top: 50%; transform: translateY(-50%); width: 56px; height: 56px; background: rgba(13,17,23,0.85); color: #C9D1D9; border: 1px solid #30363D; border-radius: 9999px; font-size: 30px; line-height: 1; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; user-select: none; padding: 0; }
+  .nav:hover { background: rgba(48,54,61,0.95); color: #FFFFFF; border-color: #6E7681; }
+  .nav:disabled { opacity: 0.25; cursor: not-allowed; }
+  .nav.prev { left: 28px; } .nav.next { right: 28px; }
+  .counter { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: rgba(13,17,23,0.85); border: 1px solid #30363D; padding: 10px 20px; border-radius: 9999px; font-size: 14px; font-weight: 500; z-index: 10; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 14px; }
+  .counter .current { color: #FFFFFF; } .counter .sep { color: #6E7681; padding: 0 4px; }
+  .counter .hint { color: #6E7681; padding-left: 14px; border-left: 1px solid #30363D; }
+  .counter .hint kbd { background: rgba(110,118,129,0.2); border: 1px solid #30363D; padding: 1px 6px; border-radius: 4px; font-size: 12px; margin: 0 2px; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="track" id="track">
+      <iframe class="frame" src="html/slide-01.html" loading="eager"></iframe>
+      <iframe class="frame" src="html/slide-02.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-03.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-04.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-05.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-06.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-07.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-08.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-09.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-10.html" loading="lazy"></iframe>
+      <iframe class="frame" src="html/slide-11.html" loading="lazy"></iframe>
+    </div>
+  </div>
+  <button class="nav prev" id="prev" aria-label="前へ">&#8249;</button>
+  <button class="nav next" id="next" aria-label="次へ">&#8250;</button>
+  <div class="counter">
+    <span><span class="current" id="current">01</span><span class="sep">/</span><span id="total">11</span></span>
+    <span class="hint"><kbd>&#8592;</kbd><kbd>&#8594;</kbd></span>
+  </div>
+  <script>
+    const TOTAL = 11; let cur = 0;
+    const track = document.getElementById('track'); const prev = document.getElementById('prev'); const next = document.getElementById('next'); const currentEl = document.getElementById('current');
+    function render(){ track.style.transform = 'translateX(-' + (cur*100) + 'vw)'; currentEl.textContent = String(cur+1).padStart(2,'0'); prev.disabled = cur===0; next.disabled = cur===TOTAL-1; if(history.replaceState) history.replaceState(null,'','#'+(cur+1)); }
+    function go(d){ const n=cur+d; if(n<0||n>=TOTAL) return; cur=n; render(); }
+    function jumpTo(n){ if(Number.isInteger(n)&&n>=0&&n<TOTAL){ cur=n; render(); } }
+    prev.addEventListener('click',()=>go(-1)); next.addEventListener('click',()=>go(1));
+    document.addEventListener('keydown',(e)=>{ if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(-1);} else if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(1);} else if(e.key==='Home'){e.preventDefault();jumpTo(0);} else if(e.key==='End'){e.preventDefault();jumpTo(TOTAL-1);} else if(/^[1-9]$/.test(e.key)){const n=parseInt(e.key,10)-1; if(n<TOTAL) jumpTo(n);} });
+    const h = parseInt((location.hash||'').replace('#',''),10); if(Number.isInteger(h)&&h>=1&&h<=TOTAL) cur=h-1; render();
+  </script>
+</body>
+</html>
