@@ -40,6 +40,11 @@
   .cmd { background: #1d1d1f; color: #f5f5f7; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 30px; padding: 26px 32px; border-radius: 14px; margin-right: 320px; }
   .cmd .hl { color: #5ec8ff; font-weight: 600; }
   .cmdcap { font-size: 24px; color: var(--fg-muted); margin-top: 16px; }
+  .prompt { background: var(--bg-soft); border: 1px solid #e3e3e6; border-radius: 14px; padding: 28px 32px; font-size: 27px; line-height: 1.55; color: var(--fg); margin-right: 320px; }
+  .prompt .hl { color: var(--accent); font-weight: 700; }
+  .warn { background: #fff4e5; border-radius: 14px; padding: 26px 32px; font-size: 26px; color: var(--fg); line-height: 1.55; margin-right: 320px; margin-bottom: 26px; }
+  .warn b { font-weight: 700; }
+  .slide .prompt, .slide .warn { word-break: keep-all; line-break: strict; overflow-wrap: break-word; }
 
   .callout { background: #eef6ff; border-radius: 14px; padding: 24px 30px; font-size: 25px; color: var(--fg); line-height: 1.5; margin-right: 320px; }
   .callout b { color: var(--accent); font-weight: 600; }
@@ -64,16 +69,17 @@
 <body>
   <div class="slide">
     <div class="head">
-      <div class="tag">渡したあと</div>
-      <h1 class="h1 sm">後片付けと、お客さんの動き</h1>
+      <div class="phase">お渡し</div>
+      <h1 class="h1 sm">Lステップで「2つ」を送る</h1>
     </div>
-    <div class="points">
-      <div class="point"><div class="ph">手元のフォルダは削除してOK</div><div class="pb">クローンとzipは消して大丈夫。お客さんの会社はDriveとお客さんのPCにあります。PCの容量も軽くなります。</div></div>
-      <div class="point"><div class="ph">お客さんがやること</div><div class="pb">まず導入スライドを見て Claude Code を準備 → つぎに会社zipを開いて「セットアップの続きをして」と話しかけるだけ。</div></div>
+    <div class="deliver">
+      <div class="drow"><div class="dh">1. Claude Code 導入スライド（常設URL）</div><div class="du">https://addness-ai.github.io/claude-code-onboarding/</div><div class="dn">お客さんが自分のPCで準備できるよう、この案内ページを渡す</div></div>
+      <div class="drow"><div class="dh">2. 一緒に作った会社ファイル（Driveリンク）</div><div class="du">先ほどコピーした Drive のリンク</div><div class="dn">面談で作った会社を、そのまま持ち帰ってもらう</div></div>
     </div>
-    <img class="character-avatar" src="../assets/default.png" alt="" />
+    <p class="note">この2点を、秘書が作った案内文と一緒に Lステップで送れば完了です。</p>
+    <img class="character-avatar" src="../assets/presenting.png" alt="" />
     <div class="brand-logo">AddNess</div>
-    <div class="footer">slide 09 / 11</div>
+    <div class="footer">slide 09 / 12</div>
   </div>
 </body>
 </html>

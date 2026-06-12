@@ -40,6 +40,11 @@
   .cmd { background: #1d1d1f; color: #f5f5f7; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 30px; padding: 26px 32px; border-radius: 14px; margin-right: 320px; }
   .cmd .hl { color: #5ec8ff; font-weight: 600; }
   .cmdcap { font-size: 24px; color: var(--fg-muted); margin-top: 16px; }
+  .prompt { background: var(--bg-soft); border: 1px solid #e3e3e6; border-radius: 14px; padding: 28px 32px; font-size: 27px; line-height: 1.55; color: var(--fg); margin-right: 320px; }
+  .prompt .hl { color: var(--accent); font-weight: 700; }
+  .warn { background: #fff4e5; border-radius: 14px; padding: 26px 32px; font-size: 26px; color: var(--fg); line-height: 1.55; margin-right: 320px; margin-bottom: 26px; }
+  .warn b { font-weight: 700; }
+  .slide .prompt, .slide .warn { word-break: keep-all; line-break: strict; overflow-wrap: break-word; }
 
   .callout { background: #eef6ff; border-radius: 14px; padding: 24px 30px; font-size: 25px; color: var(--fg); line-height: 1.5; margin-right: 320px; }
   .callout b { color: var(--accent); font-weight: 600; }
@@ -65,15 +70,14 @@
   <div class="slide">
     <div class="head">
       <div class="phase">面談 STEP 1</div>
-      <h1 class="h1 sm">会社を立ち上げる</h1>
-      <p class="lead">面談の冒頭。ターミナル（黒い画面）に、次の1行を貼るだけです。</p>
+      <h1 class="h1 sm">マジックプロンプトを貼る</h1>
+      <p class="lead">面談の冒頭。Claude Code を開いて、チャットに次の文を貼ります（名前のところだけ変える）。</p>
     </div>
-    <div class="cmd">bash scripts/new-company.sh <span class="hl">お客さんの名前</span></div>
-    <p class="cmdcap">「お客さんの名前」を実際の名前に変えて貼る（例：田中）。Enter を押すと Claude Code が立ち上がります。</p>
-    <p class="note">あとは AI秘書が、会社づくりを最初から案内してくれます。コマンドはこの1回だけ。</p>
+    <div class="prompt">https://github.com/addness-ai/ai-company-kit を <span class="hl">ai-company-お客さんの名前</span> フォルダに clone して、そのフォルダを開き直して、中の CLAUDE.md に従って AI 会社のセットアップを始めて</div>
+    <p class="cmdcap">「お客さんの名前」を実際の名前に変える（例：ai-company-田中）。これで GitHub から最新版がクローンされます。</p>
     <img class="character-avatar" src="../assets/pointing.png" alt="" />
     <div class="brand-logo">AddNess</div>
-    <div class="footer">slide 04 / 11</div>
+    <div class="footer">slide 04 / 12</div>
   </div>
 </body>
 </html>
